@@ -11,23 +11,11 @@ PHP 8.1 and later.
 
 ### Composer
 
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+To install the bindings via [Composer](https://getcomposer.org/), run:
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/domdanao/magpiepay-sdk-php.git"
-    }
-  ],
-  "require": {
-    "domdanao/magpiepay-sdk-php": "*@dev"
-  }
-}
+```bash
+composer require domdanao/magpiepay-sdk-php
 ```
-
-Then run `composer install`
 
 ### Manual Installation
 
