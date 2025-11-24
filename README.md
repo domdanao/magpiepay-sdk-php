@@ -10,6 +10,81 @@ Install the package via Composer:
 composer require domdanao/magpiepay-sdk-php
 ```
 
+## Laravel Integration
+
+The SDK is fully compatible with Laravel. Here is the recommended way to integrate it.
+
+### 1. Configure Credentials
+
+Add your API key to your `.env` file:
+
+```dotenv
+MAGPIE_API_KEY=sk_live_...
+```
+
+Add the configuration to `config/services.php`:
+
+```php
+'magpie' => [
+    'key' => env('MAGPIE_API_KEY'),
+],
+```
+
+### 2. Register Service Provider
+
+In your `app/Providers/AppServiceProvider.php`, register the client so it can be automatically injected into your controllers.
+
+```php
+use MagpiePay\Configuration;
+use MagpiePay\Api\PaymentsApi;
+use MagpiePay\Api\PayoutsApi;
+use MagpiePay\Api\QRPhRequestsApi;
+use MagpiePay\Api\ReferencesApi;
+use GuzzleHttp\Client;
+
+public function register()
+{
+    $this->app->singleton(Configuration::class, function ($app) {
+        return Configuration::getDefaultConfiguration()
+            ->setUsername(config('services.magpie.key'))
+            ->setPassword('');
+    });
+
+    $this->app->bind(PaymentsApi::class, function ($app) {
+        return new PaymentsApi(new Client(), $app->make(Configuration::class));
+    });
+
+    $this->app->bind(PayoutsApi::class, function ($app) {
+        return new PayoutsApi(new Client(), $app->make(Configuration::class));
+    });
+    
+    // Bind other APIs as needed...
+}
+```
+
+### 3. Usage in Controllers
+
+Now you can type-hint the API classes in your controllers, and Laravel will automatically inject the configured instance.
+
+```php
+namespace App\Http\Controllers;
+
+use MagpiePay\Api\PaymentsApi;
+
+class PaymentController extends Controller
+{
+    public function index(PaymentsApi $api)
+    {
+        try {
+            $payments = $api->listPaymentsV1PaymentsGet();
+            return response()->json($payments->getData());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+}
+```
+
 ## Getting Started
 
 ### Authentication
