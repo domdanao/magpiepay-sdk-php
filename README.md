@@ -1,76 +1,137 @@
-# MagpiePay
+# MagpiePay PHP SDK
 
-Magpie API for QRPh and Disbursement services
+The official PHP client for the MagpiePay API.
 
+## Installation
 
-## Installation & Usage
+Install the package via Composer:
 
-### Requirements
-
-PHP 8.1 and later.
-
-### Composer
-
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
-
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
-    }
-  ],
-  "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
-  }
-}
-```
-
-Then run `composer install`
-
-### Manual Installation
-
-Download the files and include `autoload.php`:
-
-```php
-<?php
-require_once('/path/to/MagpiePay/vendor/autoload.php');
+```bash
+composer require domdanao/magpiepay-sdk-php
 ```
 
 ## Getting Started
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+### Authentication
+
+Initialize the client with your API key. The API uses Basic Authentication, where the username is your API key and the password is left empty.
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use MagpiePay\Configuration;
+use MagpiePay\Api\PaymentsApi;
+use GuzzleHttp\Client;
 
+$config = Configuration::getDefaultConfiguration()
+    ->setUsername('YOUR_API_KEY')
+    ->setPassword(''); // Password is empty for MagpiePay API Key auth
 
-// Configure HTTP basic authorization: basicAuth
-$config = MagpiePay\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MagpiePay\Api\PaymentsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+$paymentsApi = new PaymentsApi(
+    new Client(),
     $config
 );
-$payment_id = 'payment_id_example'; // string
-$x_api_key = 'x_api_key_example'; // string
-$authorization = 'authorization_example'; // string
+```
+
+### Quick Start: List Bank Codes
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use MagpiePay\Configuration;
+use MagpiePay\Api\ReferencesApi;
+use GuzzleHttp\Client;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setUsername('YOUR_API_KEY')
+    ->setPassword('');
+
+$referencesApi = new ReferencesApi(new Client(), $config);
 
 try {
-    $result = $apiInstance->getPaymentV1PaymentsPaymentIdGet($payment_id, $x_api_key, $authorization);
+    $result = $referencesApi->listBankCodesV1ReferencesBankCodesGet();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PaymentsApi->getPaymentV1PaymentsPaymentIdGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ReferencesApi->listBankCodesV1ReferencesBankCodesGet: ', $e->getMessage(), PHP_EOL;
 }
+```
 
+## Recipes
+
+### Create a Payment (QRPh)
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use MagpiePay\Configuration;
+use MagpiePay\Api\QRPhRequestsApi;
+use MagpiePay\Model\CanonicalCreateQRReq;
+use GuzzleHttp\Client;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setUsername('YOUR_API_KEY')
+    ->setPassword('');
+
+$qrphApi = new QRPhRequestsApi(new Client(), $config);
+
+$request = new CanonicalCreateQRReq([
+    'reference_id' => 'my-ref-123',
+    'amount' => 10000, // 100.00 PHP
+    'type' => 'dynamic',
+    'metadata' => ['customer_name' => 'John Doe']
+]);
+
+try {
+    $response = $qrphApi->createQrphV1QrphPost($request);
+    echo "Payment Created: " . $response->getData()->getId() . PHP_EOL;
+    echo "Checkout URL: " . $response->getData()->getCheckoutUrl() . PHP_EOL;
+} catch (Exception $e) {
+    echo 'Error creating payment: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Create a Payout
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use MagpiePay\Configuration;
+use MagpiePay\Api\PayoutsApi;
+use MagpiePay\Model\PayoutCreateRequest;
+use MagpiePay\Model\PayoutDestination;
+use GuzzleHttp\Client;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setUsername('YOUR_API_KEY')
+    ->setPassword('');
+
+$payoutsApi = new PayoutsApi(new Client(), $config);
+
+$destination = new PayoutDestination([
+    'bank_code' => 'BDO',
+    'account_number' => '1234567890',
+    'first_name' => 'Jane',
+    'last_name' => 'Doe'
+]);
+
+$request = new PayoutCreateRequest([
+    'reference_id' => 'payout-ref-456',
+    'amount' => 50000, // 500.00 PHP
+    'channel' => 'instapay',
+    'source_account_id' => 'src_123',
+    'destination' => $destination
+]);
+
+try {
+    $response = $payoutsApi->createPayoutV1PayoutsPost($request);
+    echo "Payout Initiated: " . $response->getData()->getId() . PHP_EOL;
+} catch (Exception $e) {
+    echo 'Error creating payout: ', $e->getMessage(), PHP_EOL;
+}
 ```
 
 ## API Endpoints
@@ -112,31 +173,3 @@ Class | Method | HTTP request | Description
 - [QRPhSingleResponse](docs/Model/QRPhSingleResponse.md)
 - [ValidationError](docs/Model/ValidationError.md)
 - [ValidationErrorLocInner](docs/Model/ValidationErrorLocInner.md)
-
-## Authorization
-
-Authentication schemes defined for the API:
-### basicAuth
-
-- **Type**: HTTP basic authentication
-
-## Tests
-
-To run the tests, use:
-
-```bash
-composer install
-vendor/bin/phpunit
-```
-
-## Author
-
-
-
-## About this package
-
-This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
-
-- API version: `1.0.0`
-    - Generator version: `7.17.0`
-- Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
