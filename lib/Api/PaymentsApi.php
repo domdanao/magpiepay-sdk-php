@@ -74,10 +74,10 @@ class PaymentsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getPaymentV1PaymentsPaymentIdGet' => [
+        'getPayment' => [
             'application/json',
         ],
-        'listPaymentsV1PaymentsGet' => [
+        'listPayments' => [
             'application/json',
         ],
     ];
@@ -129,42 +129,42 @@ class PaymentsApi
     }
 
     /**
-     * Operation getPaymentV1PaymentsPaymentIdGet
+     * Operation getPayment
      *
      * Get payment
      *
      * @param  string $payment_id payment_id (required)
      * @param  string|null $x_api_key x_api_key (optional)
      * @param  string|null $authorization authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentV1PaymentsPaymentIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \MagpiePay\Model\PaymentSingleResponse|\MagpiePay\Model\HTTPValidationError
      */
-    public function getPaymentV1PaymentsPaymentIdGet($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPaymentV1PaymentsPaymentIdGet'][0])
+    public function getPayment($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPayment'][0])
     {
-        list($response) = $this->getPaymentV1PaymentsPaymentIdGetWithHttpInfo($payment_id, $x_api_key, $authorization, $contentType);
+        list($response) = $this->getPaymentWithHttpInfo($payment_id, $x_api_key, $authorization, $contentType);
         return $response;
     }
 
     /**
-     * Operation getPaymentV1PaymentsPaymentIdGetWithHttpInfo
+     * Operation getPaymentWithHttpInfo
      *
      * Get payment
      *
      * @param  string $payment_id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentV1PaymentsPaymentIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \MagpiePay\Model\PaymentSingleResponse|\MagpiePay\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentV1PaymentsPaymentIdGetWithHttpInfo($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPaymentV1PaymentsPaymentIdGet'][0])
+    public function getPaymentWithHttpInfo($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPayment'][0])
     {
-        $request = $this->getPaymentV1PaymentsPaymentIdGetRequest($payment_id, $x_api_key, $authorization, $contentType);
+        $request = $this->getPaymentRequest($payment_id, $x_api_key, $authorization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -250,21 +250,21 @@ class PaymentsApi
     }
 
     /**
-     * Operation getPaymentV1PaymentsPaymentIdGetAsync
+     * Operation getPaymentAsync
      *
      * Get payment
      *
      * @param  string $payment_id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentV1PaymentsPaymentIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentV1PaymentsPaymentIdGetAsync($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPaymentV1PaymentsPaymentIdGet'][0])
+    public function getPaymentAsync($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPayment'][0])
     {
-        return $this->getPaymentV1PaymentsPaymentIdGetAsyncWithHttpInfo($payment_id, $x_api_key, $authorization, $contentType)
+        return $this->getPaymentAsyncWithHttpInfo($payment_id, $x_api_key, $authorization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,22 +273,22 @@ class PaymentsApi
     }
 
     /**
-     * Operation getPaymentV1PaymentsPaymentIdGetAsyncWithHttpInfo
+     * Operation getPaymentAsyncWithHttpInfo
      *
      * Get payment
      *
      * @param  string $payment_id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentV1PaymentsPaymentIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentV1PaymentsPaymentIdGetAsyncWithHttpInfo($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPaymentV1PaymentsPaymentIdGet'][0])
+    public function getPaymentAsyncWithHttpInfo($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPayment'][0])
     {
         $returnType = '\MagpiePay\Model\PaymentSingleResponse';
-        $request = $this->getPaymentV1PaymentsPaymentIdGetRequest($payment_id, $x_api_key, $authorization, $contentType);
+        $request = $this->getPaymentRequest($payment_id, $x_api_key, $authorization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -327,23 +327,23 @@ class PaymentsApi
     }
 
     /**
-     * Create request for operation 'getPaymentV1PaymentsPaymentIdGet'
+     * Create request for operation 'getPayment'
      *
      * @param  string $payment_id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentV1PaymentsPaymentIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentV1PaymentsPaymentIdGetRequest($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPaymentV1PaymentsPaymentIdGet'][0])
+    public function getPaymentRequest($payment_id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getPayment'][0])
     {
 
         // verify the required parameter 'payment_id' is set
         if ($payment_id === null || (is_array($payment_id) && count($payment_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payment_id when calling getPaymentV1PaymentsPaymentIdGet'
+                'Missing the required parameter $payment_id when calling getPayment'
             );
         }
 
@@ -435,7 +435,7 @@ class PaymentsApi
     }
 
     /**
-     * Operation listPaymentsV1PaymentsGet
+     * Operation listPayments
      *
      * List payments
      *
@@ -443,20 +443,20 @@ class PaymentsApi
      * @param  string|null $cursor Cursor returned from the previous page. (optional)
      * @param  string|null $x_api_key x_api_key (optional)
      * @param  string|null $authorization authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaymentsV1PaymentsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPayments'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \MagpiePay\Model\PaymentCollectionResponse|\MagpiePay\Model\HTTPValidationError
      */
-    public function listPaymentsV1PaymentsGet($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPaymentsV1PaymentsGet'][0])
+    public function listPayments($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPayments'][0])
     {
-        list($response) = $this->listPaymentsV1PaymentsGetWithHttpInfo($limit, $cursor, $x_api_key, $authorization, $contentType);
+        list($response) = $this->listPaymentsWithHttpInfo($limit, $cursor, $x_api_key, $authorization, $contentType);
         return $response;
     }
 
     /**
-     * Operation listPaymentsV1PaymentsGetWithHttpInfo
+     * Operation listPaymentsWithHttpInfo
      *
      * List payments
      *
@@ -464,15 +464,15 @@ class PaymentsApi
      * @param  string|null $cursor Cursor returned from the previous page. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaymentsV1PaymentsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPayments'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \MagpiePay\Model\PaymentCollectionResponse|\MagpiePay\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPaymentsV1PaymentsGetWithHttpInfo($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPaymentsV1PaymentsGet'][0])
+    public function listPaymentsWithHttpInfo($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPayments'][0])
     {
-        $request = $this->listPaymentsV1PaymentsGetRequest($limit, $cursor, $x_api_key, $authorization, $contentType);
+        $request = $this->listPaymentsRequest($limit, $cursor, $x_api_key, $authorization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -558,7 +558,7 @@ class PaymentsApi
     }
 
     /**
-     * Operation listPaymentsV1PaymentsGetAsync
+     * Operation listPaymentsAsync
      *
      * List payments
      *
@@ -566,14 +566,14 @@ class PaymentsApi
      * @param  string|null $cursor Cursor returned from the previous page. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaymentsV1PaymentsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPayments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPaymentsV1PaymentsGetAsync($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPaymentsV1PaymentsGet'][0])
+    public function listPaymentsAsync($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPayments'][0])
     {
-        return $this->listPaymentsV1PaymentsGetAsyncWithHttpInfo($limit, $cursor, $x_api_key, $authorization, $contentType)
+        return $this->listPaymentsAsyncWithHttpInfo($limit, $cursor, $x_api_key, $authorization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -582,7 +582,7 @@ class PaymentsApi
     }
 
     /**
-     * Operation listPaymentsV1PaymentsGetAsyncWithHttpInfo
+     * Operation listPaymentsAsyncWithHttpInfo
      *
      * List payments
      *
@@ -590,15 +590,15 @@ class PaymentsApi
      * @param  string|null $cursor Cursor returned from the previous page. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaymentsV1PaymentsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPayments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPaymentsV1PaymentsGetAsyncWithHttpInfo($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPaymentsV1PaymentsGet'][0])
+    public function listPaymentsAsyncWithHttpInfo($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPayments'][0])
     {
         $returnType = '\MagpiePay\Model\PaymentCollectionResponse';
-        $request = $this->listPaymentsV1PaymentsGetRequest($limit, $cursor, $x_api_key, $authorization, $contentType);
+        $request = $this->listPaymentsRequest($limit, $cursor, $x_api_key, $authorization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -637,25 +637,25 @@ class PaymentsApi
     }
 
     /**
-     * Create request for operation 'listPaymentsV1PaymentsGet'
+     * Create request for operation 'listPayments'
      *
      * @param  int|null $limit Number of payments to return (1-100). (optional, default to 50)
      * @param  string|null $cursor Cursor returned from the previous page. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaymentsV1PaymentsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPayments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPaymentsV1PaymentsGetRequest($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPaymentsV1PaymentsGet'][0])
+    public function listPaymentsRequest($limit = 50, $cursor = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listPayments'][0])
     {
 
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling PaymentsApi.listPaymentsV1PaymentsGet, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PaymentsApi.listPayments, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling PaymentsApi.listPaymentsV1PaymentsGet, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PaymentsApi.listPayments, must be bigger than or equal to 1.');
         }
         
 

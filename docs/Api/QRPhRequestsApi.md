@@ -6,16 +6,16 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**cancelQrphV1QrphIdCancelPost()**](QRPhRequestsApi.md#cancelQrphV1QrphIdCancelPost) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request |
-| [**createQrphV1QrphPost()**](QRPhRequestsApi.md#createQrphV1QrphPost) | **POST** /v1/qrph/ | Create a QRPh request |
-| [**getQrphStatusV1QrphIdGet()**](QRPhRequestsApi.md#getQrphStatusV1QrphIdGet) | **GET** /v1/qrph/{id} | Get QRPh status |
-| [**listQrphV1QrphGet()**](QRPhRequestsApi.md#listQrphV1QrphGet) | **GET** /v1/qrph/ | List QRPh requests |
+| [**cancelQrph()**](QRPhRequestsApi.md#cancelQrph) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request |
+| [**createQrph()**](QRPhRequestsApi.md#createQrph) | **POST** /v1/qrph/ | Create a QRPh request |
+| [**getQrph()**](QRPhRequestsApi.md#getQrph) | **GET** /v1/qrph/{id} | Get QRPh status |
+| [**listQrph()**](QRPhRequestsApi.md#listQrph) | **GET** /v1/qrph/ | List QRPh requests |
 
 
-## `cancelQrphV1QrphIdCancelPost()`
+## `cancelQrph()`
 
 ```php
-cancelQrphV1QrphIdCancelPost($id, $x_api_key, $authorization, $cancel_qrph_request): \MagpiePay\Model\QRPhSingleResponse
+cancelQrph($id, $x_api_key, $authorization, $cancel_qrph_request): \MagpiePay\Model\QRPhSingleResponse
 ```
 
 Cancel a QRPh request
@@ -47,10 +47,10 @@ $authorization = 'authorization_example'; // string
 $cancel_qrph_request = {"cancellation_reason":"Customer requested refund"}; // \MagpiePay\Model\CancelQRPhRequest
 
 try {
-    $result = $apiInstance->cancelQrphV1QrphIdCancelPost($id, $x_api_key, $authorization, $cancel_qrph_request);
+    $result = $apiInstance->cancelQrph($id, $x_api_key, $authorization, $cancel_qrph_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling QRPhRequestsApi->cancelQrphV1QrphIdCancelPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling QRPhRequestsApi->cancelQrph: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -80,10 +80,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createQrphV1QrphPost()`
+## `createQrph()`
 
 ```php
-createQrphV1QrphPost($canonical_create_qr_req, $x_api_key, $authorization): \MagpiePay\Model\QRPhSingleResponse
+createQrph($canonical_create_qr_req, $x_api_key, $authorization): \MagpiePay\Model\QRPhSingleResponse
 ```
 
 Create a QRPh request
@@ -114,10 +114,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->createQrphV1QrphPost($canonical_create_qr_req, $x_api_key, $authorization);
+    $result = $apiInstance->createQrph($canonical_create_qr_req, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling QRPhRequestsApi->createQrphV1QrphPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling QRPhRequestsApi->createQrph: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -146,10 +146,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getQrphStatusV1QrphIdGet()`
+## `getQrph()`
 
 ```php
-getQrphStatusV1QrphIdGet($id, $x_api_key, $authorization): \MagpiePay\Model\QRPhSingleResponse
+getQrph($id, $x_api_key, $authorization): \MagpiePay\Model\QRPhSingleResponse
 ```
 
 Get QRPh status
@@ -180,10 +180,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->getQrphStatusV1QrphIdGet($id, $x_api_key, $authorization);
+    $result = $apiInstance->getQrph($id, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling QRPhRequestsApi->getQrphStatusV1QrphIdGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling QRPhRequestsApi->getQrph: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -212,10 +212,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listQrphV1QrphGet()`
+## `listQrph()`
 
 ```php
-listQrphV1QrphGet($limit, $cursor, $reference_id, $x_api_key, $authorization): \MagpiePay\Model\QRPhCollectionResponse
+listQrph($limit, $cursor, $reference_id, $x_api_key, $authorization): \MagpiePay\Model\QRPhCollectionResponse
 ```
 
 List QRPh requests
@@ -248,10 +248,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->listQrphV1QrphGet($limit, $cursor, $reference_id, $x_api_key, $authorization);
+    $result = $apiInstance->listQrph($limit, $cursor, $reference_id, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling QRPhRequestsApi->listQrphV1QrphGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling QRPhRequestsApi->listQrph: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

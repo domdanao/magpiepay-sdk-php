@@ -74,16 +74,16 @@ class QRPhRequestsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'cancelQrphV1QrphIdCancelPost' => [
+        'cancelQrph' => [
             'application/json',
         ],
-        'createQrphV1QrphPost' => [
+        'createQrph' => [
             'application/json',
         ],
-        'getQrphStatusV1QrphIdGet' => [
+        'getQrph' => [
             'application/json',
         ],
-        'listQrphV1QrphGet' => [
+        'listQrph' => [
             'application/json',
         ],
     ];
@@ -135,7 +135,7 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation cancelQrphV1QrphIdCancelPost
+     * Operation cancelQrph
      *
      * Cancel a QRPh request
      *
@@ -143,20 +143,20 @@ class QRPhRequestsApi
      * @param  string|null $x_api_key x_api_key (optional)
      * @param  string|null $authorization authorization (optional)
      * @param  \MagpiePay\Model\CancelQRPhRequest|null $cancel_qrph_request cancel_qrph_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrphV1QrphIdCancelPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \MagpiePay\Model\QRPhSingleResponse|\MagpiePay\Model\HTTPValidationError
      */
-    public function cancelQrphV1QrphIdCancelPost($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrphV1QrphIdCancelPost'][0])
+    public function cancelQrph($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrph'][0])
     {
-        list($response) = $this->cancelQrphV1QrphIdCancelPostWithHttpInfo($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType);
+        list($response) = $this->cancelQrphWithHttpInfo($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation cancelQrphV1QrphIdCancelPostWithHttpInfo
+     * Operation cancelQrphWithHttpInfo
      *
      * Cancel a QRPh request
      *
@@ -164,15 +164,15 @@ class QRPhRequestsApi
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
      * @param  \MagpiePay\Model\CancelQRPhRequest|null $cancel_qrph_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrphV1QrphIdCancelPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \MagpiePay\Model\QRPhSingleResponse|\MagpiePay\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function cancelQrphV1QrphIdCancelPostWithHttpInfo($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrphV1QrphIdCancelPost'][0])
+    public function cancelQrphWithHttpInfo($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrph'][0])
     {
-        $request = $this->cancelQrphV1QrphIdCancelPostRequest($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType);
+        $request = $this->cancelQrphRequest($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -258,7 +258,7 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation cancelQrphV1QrphIdCancelPostAsync
+     * Operation cancelQrphAsync
      *
      * Cancel a QRPh request
      *
@@ -266,14 +266,14 @@ class QRPhRequestsApi
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
      * @param  \MagpiePay\Model\CancelQRPhRequest|null $cancel_qrph_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrphV1QrphIdCancelPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelQrphV1QrphIdCancelPostAsync($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrphV1QrphIdCancelPost'][0])
+    public function cancelQrphAsync($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrph'][0])
     {
-        return $this->cancelQrphV1QrphIdCancelPostAsyncWithHttpInfo($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType)
+        return $this->cancelQrphAsyncWithHttpInfo($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -282,7 +282,7 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation cancelQrphV1QrphIdCancelPostAsyncWithHttpInfo
+     * Operation cancelQrphAsyncWithHttpInfo
      *
      * Cancel a QRPh request
      *
@@ -290,15 +290,15 @@ class QRPhRequestsApi
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
      * @param  \MagpiePay\Model\CancelQRPhRequest|null $cancel_qrph_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrphV1QrphIdCancelPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelQrphV1QrphIdCancelPostAsyncWithHttpInfo($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrphV1QrphIdCancelPost'][0])
+    public function cancelQrphAsyncWithHttpInfo($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrph'][0])
     {
         $returnType = '\MagpiePay\Model\QRPhSingleResponse';
-        $request = $this->cancelQrphV1QrphIdCancelPostRequest($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType);
+        $request = $this->cancelQrphRequest($id, $x_api_key, $authorization, $cancel_qrph_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -337,24 +337,24 @@ class QRPhRequestsApi
     }
 
     /**
-     * Create request for operation 'cancelQrphV1QrphIdCancelPost'
+     * Create request for operation 'cancelQrph'
      *
      * @param  string $id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
      * @param  \MagpiePay\Model\CancelQRPhRequest|null $cancel_qrph_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrphV1QrphIdCancelPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelQrphV1QrphIdCancelPostRequest($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrphV1QrphIdCancelPost'][0])
+    public function cancelQrphRequest($id, $x_api_key = null, $authorization = null, $cancel_qrph_request = null, string $contentType = self::contentTypes['cancelQrph'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cancelQrphV1QrphIdCancelPost'
+                'Missing the required parameter $id when calling cancelQrph'
             );
         }
 
@@ -454,42 +454,42 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation createQrphV1QrphPost
+     * Operation createQrph
      *
      * Create a QRPh request
      *
      * @param  \MagpiePay\Model\CanonicalCreateQRReq $canonical_create_qr_req canonical_create_qr_req (required)
      * @param  string|null $x_api_key x_api_key (optional)
      * @param  string|null $authorization authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrphV1QrphPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \MagpiePay\Model\QRPhSingleResponse|\MagpiePay\Model\HTTPValidationError
      */
-    public function createQrphV1QrphPost($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrphV1QrphPost'][0])
+    public function createQrph($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrph'][0])
     {
-        list($response) = $this->createQrphV1QrphPostWithHttpInfo($canonical_create_qr_req, $x_api_key, $authorization, $contentType);
+        list($response) = $this->createQrphWithHttpInfo($canonical_create_qr_req, $x_api_key, $authorization, $contentType);
         return $response;
     }
 
     /**
-     * Operation createQrphV1QrphPostWithHttpInfo
+     * Operation createQrphWithHttpInfo
      *
      * Create a QRPh request
      *
      * @param  \MagpiePay\Model\CanonicalCreateQRReq $canonical_create_qr_req (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrphV1QrphPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \MagpiePay\Model\QRPhSingleResponse|\MagpiePay\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createQrphV1QrphPostWithHttpInfo($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrphV1QrphPost'][0])
+    public function createQrphWithHttpInfo($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrph'][0])
     {
-        $request = $this->createQrphV1QrphPostRequest($canonical_create_qr_req, $x_api_key, $authorization, $contentType);
+        $request = $this->createQrphRequest($canonical_create_qr_req, $x_api_key, $authorization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -575,21 +575,21 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation createQrphV1QrphPostAsync
+     * Operation createQrphAsync
      *
      * Create a QRPh request
      *
      * @param  \MagpiePay\Model\CanonicalCreateQRReq $canonical_create_qr_req (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrphV1QrphPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createQrphV1QrphPostAsync($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrphV1QrphPost'][0])
+    public function createQrphAsync($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrph'][0])
     {
-        return $this->createQrphV1QrphPostAsyncWithHttpInfo($canonical_create_qr_req, $x_api_key, $authorization, $contentType)
+        return $this->createQrphAsyncWithHttpInfo($canonical_create_qr_req, $x_api_key, $authorization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -598,22 +598,22 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation createQrphV1QrphPostAsyncWithHttpInfo
+     * Operation createQrphAsyncWithHttpInfo
      *
      * Create a QRPh request
      *
      * @param  \MagpiePay\Model\CanonicalCreateQRReq $canonical_create_qr_req (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrphV1QrphPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createQrphV1QrphPostAsyncWithHttpInfo($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrphV1QrphPost'][0])
+    public function createQrphAsyncWithHttpInfo($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrph'][0])
     {
         $returnType = '\MagpiePay\Model\QRPhSingleResponse';
-        $request = $this->createQrphV1QrphPostRequest($canonical_create_qr_req, $x_api_key, $authorization, $contentType);
+        $request = $this->createQrphRequest($canonical_create_qr_req, $x_api_key, $authorization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -652,23 +652,23 @@ class QRPhRequestsApi
     }
 
     /**
-     * Create request for operation 'createQrphV1QrphPost'
+     * Create request for operation 'createQrph'
      *
      * @param  \MagpiePay\Model\CanonicalCreateQRReq $canonical_create_qr_req (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrphV1QrphPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createQrphV1QrphPostRequest($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrphV1QrphPost'][0])
+    public function createQrphRequest($canonical_create_qr_req, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['createQrph'][0])
     {
 
         // verify the required parameter 'canonical_create_qr_req' is set
         if ($canonical_create_qr_req === null || (is_array($canonical_create_qr_req) && count($canonical_create_qr_req) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $canonical_create_qr_req when calling createQrphV1QrphPost'
+                'Missing the required parameter $canonical_create_qr_req when calling createQrph'
             );
         }
 
@@ -759,42 +759,42 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation getQrphStatusV1QrphIdGet
+     * Operation getQrph
      *
      * Get QRPh status
      *
      * @param  string $id id (required)
      * @param  string|null $x_api_key x_api_key (optional)
      * @param  string|null $authorization authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrphStatusV1QrphIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \MagpiePay\Model\QRPhSingleResponse|\MagpiePay\Model\HTTPValidationError
      */
-    public function getQrphStatusV1QrphIdGet($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrphStatusV1QrphIdGet'][0])
+    public function getQrph($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrph'][0])
     {
-        list($response) = $this->getQrphStatusV1QrphIdGetWithHttpInfo($id, $x_api_key, $authorization, $contentType);
+        list($response) = $this->getQrphWithHttpInfo($id, $x_api_key, $authorization, $contentType);
         return $response;
     }
 
     /**
-     * Operation getQrphStatusV1QrphIdGetWithHttpInfo
+     * Operation getQrphWithHttpInfo
      *
      * Get QRPh status
      *
      * @param  string $id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrphStatusV1QrphIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \MagpiePay\Model\QRPhSingleResponse|\MagpiePay\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getQrphStatusV1QrphIdGetWithHttpInfo($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrphStatusV1QrphIdGet'][0])
+    public function getQrphWithHttpInfo($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrph'][0])
     {
-        $request = $this->getQrphStatusV1QrphIdGetRequest($id, $x_api_key, $authorization, $contentType);
+        $request = $this->getQrphRequest($id, $x_api_key, $authorization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -880,21 +880,21 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation getQrphStatusV1QrphIdGetAsync
+     * Operation getQrphAsync
      *
      * Get QRPh status
      *
      * @param  string $id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrphStatusV1QrphIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getQrphStatusV1QrphIdGetAsync($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrphStatusV1QrphIdGet'][0])
+    public function getQrphAsync($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrph'][0])
     {
-        return $this->getQrphStatusV1QrphIdGetAsyncWithHttpInfo($id, $x_api_key, $authorization, $contentType)
+        return $this->getQrphAsyncWithHttpInfo($id, $x_api_key, $authorization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -903,22 +903,22 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation getQrphStatusV1QrphIdGetAsyncWithHttpInfo
+     * Operation getQrphAsyncWithHttpInfo
      *
      * Get QRPh status
      *
      * @param  string $id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrphStatusV1QrphIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getQrphStatusV1QrphIdGetAsyncWithHttpInfo($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrphStatusV1QrphIdGet'][0])
+    public function getQrphAsyncWithHttpInfo($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrph'][0])
     {
         $returnType = '\MagpiePay\Model\QRPhSingleResponse';
-        $request = $this->getQrphStatusV1QrphIdGetRequest($id, $x_api_key, $authorization, $contentType);
+        $request = $this->getQrphRequest($id, $x_api_key, $authorization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -957,23 +957,23 @@ class QRPhRequestsApi
     }
 
     /**
-     * Create request for operation 'getQrphStatusV1QrphIdGet'
+     * Create request for operation 'getQrph'
      *
      * @param  string $id (required)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrphStatusV1QrphIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getQrphStatusV1QrphIdGetRequest($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrphStatusV1QrphIdGet'][0])
+    public function getQrphRequest($id, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['getQrph'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getQrphStatusV1QrphIdGet'
+                'Missing the required parameter $id when calling getQrph'
             );
         }
 
@@ -1065,7 +1065,7 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation listQrphV1QrphGet
+     * Operation listQrph
      *
      * List QRPh requests
      *
@@ -1074,20 +1074,20 @@ class QRPhRequestsApi
      * @param  string|null $reference_id Filter on a specific request reference ID. (optional)
      * @param  string|null $x_api_key x_api_key (optional)
      * @param  string|null $authorization authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrphV1QrphGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \MagpiePay\Model\QRPhCollectionResponse|\MagpiePay\Model\HTTPValidationError
      */
-    public function listQrphV1QrphGet($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrphV1QrphGet'][0])
+    public function listQrph($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrph'][0])
     {
-        list($response) = $this->listQrphV1QrphGetWithHttpInfo($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType);
+        list($response) = $this->listQrphWithHttpInfo($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType);
         return $response;
     }
 
     /**
-     * Operation listQrphV1QrphGetWithHttpInfo
+     * Operation listQrphWithHttpInfo
      *
      * List QRPh requests
      *
@@ -1096,15 +1096,15 @@ class QRPhRequestsApi
      * @param  string|null $reference_id Filter on a specific request reference ID. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrphV1QrphGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrph'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \MagpiePay\Model\QRPhCollectionResponse|\MagpiePay\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listQrphV1QrphGetWithHttpInfo($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrphV1QrphGet'][0])
+    public function listQrphWithHttpInfo($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrph'][0])
     {
-        $request = $this->listQrphV1QrphGetRequest($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType);
+        $request = $this->listQrphRequest($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1190,7 +1190,7 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation listQrphV1QrphGetAsync
+     * Operation listQrphAsync
      *
      * List QRPh requests
      *
@@ -1199,14 +1199,14 @@ class QRPhRequestsApi
      * @param  string|null $reference_id Filter on a specific request reference ID. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrphV1QrphGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listQrphV1QrphGetAsync($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrphV1QrphGet'][0])
+    public function listQrphAsync($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrph'][0])
     {
-        return $this->listQrphV1QrphGetAsyncWithHttpInfo($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType)
+        return $this->listQrphAsyncWithHttpInfo($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1215,7 +1215,7 @@ class QRPhRequestsApi
     }
 
     /**
-     * Operation listQrphV1QrphGetAsyncWithHttpInfo
+     * Operation listQrphAsyncWithHttpInfo
      *
      * List QRPh requests
      *
@@ -1224,15 +1224,15 @@ class QRPhRequestsApi
      * @param  string|null $reference_id Filter on a specific request reference ID. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrphV1QrphGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listQrphV1QrphGetAsyncWithHttpInfo($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrphV1QrphGet'][0])
+    public function listQrphAsyncWithHttpInfo($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrph'][0])
     {
         $returnType = '\MagpiePay\Model\QRPhCollectionResponse';
-        $request = $this->listQrphV1QrphGetRequest($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType);
+        $request = $this->listQrphRequest($limit, $cursor, $reference_id, $x_api_key, $authorization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1271,26 +1271,26 @@ class QRPhRequestsApi
     }
 
     /**
-     * Create request for operation 'listQrphV1QrphGet'
+     * Create request for operation 'listQrph'
      *
      * @param  int|null $limit Number of items to return (1-100). (optional, default to 50)
      * @param  string|null $cursor Opaque cursor returned from the previous page for pagination. (optional)
      * @param  string|null $reference_id Filter on a specific request reference ID. (optional)
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrphV1QrphGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listQrph'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listQrphV1QrphGetRequest($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrphV1QrphGet'][0])
+    public function listQrphRequest($limit = 50, $cursor = null, $reference_id = null, $x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listQrph'][0])
     {
 
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling QRPhRequestsApi.listQrphV1QrphGet, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling QRPhRequestsApi.listQrph, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling QRPhRequestsApi.listQrphV1QrphGet, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling QRPhRequestsApi.listQrph, must be bigger than or equal to 1.');
         }
         
 

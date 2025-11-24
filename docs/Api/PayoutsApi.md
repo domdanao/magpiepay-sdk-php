@@ -6,15 +6,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**createPayoutV1PayoutsPost()**](PayoutsApi.md#createPayoutV1PayoutsPost) | **POST** /v1/payouts/ | Create a payout |
-| [**getPayoutV1PayoutsPayoutIdGet()**](PayoutsApi.md#getPayoutV1PayoutsPayoutIdGet) | **GET** /v1/payouts/{payout_id} | Get payout |
-| [**listPayoutsV1PayoutsGet()**](PayoutsApi.md#listPayoutsV1PayoutsGet) | **GET** /v1/payouts/ | List payouts |
+| [**createPayout()**](PayoutsApi.md#createPayout) | **POST** /v1/payouts/ | Create a payout |
+| [**getPayout()**](PayoutsApi.md#getPayout) | **GET** /v1/payouts/{payout_id} | Get payout |
+| [**listPayouts()**](PayoutsApi.md#listPayouts) | **GET** /v1/payouts/ | List payouts |
 
 
-## `createPayoutV1PayoutsPost()`
+## `createPayout()`
 
 ```php
-createPayoutV1PayoutsPost($payout_create_request, $x_api_key, $authorization): \MagpiePay\Model\PayoutSingleResponse
+createPayout($payout_create_request, $x_api_key, $authorization): \MagpiePay\Model\PayoutSingleResponse
 ```
 
 Create a payout
@@ -45,10 +45,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->createPayoutV1PayoutsPost($payout_create_request, $x_api_key, $authorization);
+    $result = $apiInstance->createPayout($payout_create_request, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PayoutsApi->createPayoutV1PayoutsPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PayoutsApi->createPayout: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -77,10 +77,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getPayoutV1PayoutsPayoutIdGet()`
+## `getPayout()`
 
 ```php
-getPayoutV1PayoutsPayoutIdGet($payout_id, $x_api_key, $authorization): \MagpiePay\Model\PayoutSingleResponse
+getPayout($payout_id, $x_api_key, $authorization): \MagpiePay\Model\PayoutSingleResponse
 ```
 
 Get payout
@@ -111,10 +111,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->getPayoutV1PayoutsPayoutIdGet($payout_id, $x_api_key, $authorization);
+    $result = $apiInstance->getPayout($payout_id, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PayoutsApi->getPayoutV1PayoutsPayoutIdGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PayoutsApi->getPayout: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -143,10 +143,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listPayoutsV1PayoutsGet()`
+## `listPayouts()`
 
 ```php
-listPayoutsV1PayoutsGet($limit, $cursor, $reference_id, $x_api_key, $authorization): \MagpiePay\Model\PayoutCollectionResponse
+listPayouts($limit, $cursor, $reference_id, $x_api_key, $authorization): \MagpiePay\Model\PayoutCollectionResponse
 ```
 
 List payouts
@@ -179,10 +179,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->listPayoutsV1PayoutsGet($limit, $cursor, $reference_id, $x_api_key, $authorization);
+    $result = $apiInstance->listPayouts($limit, $cursor, $reference_id, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PayoutsApi->listPayoutsV1PayoutsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PayoutsApi->listPayouts: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

@@ -74,7 +74,7 @@ class ReferencesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'listBankCodesV1ReferencesBankCodesGet' => [
+        'listBankCodes' => [
             'application/json',
         ],
     ];
@@ -126,40 +126,40 @@ class ReferencesApi
     }
 
     /**
-     * Operation listBankCodesV1ReferencesBankCodesGet
+     * Operation listBankCodes
      *
      * List Bank Codes
      *
      * @param  string|null $x_api_key x_api_key (optional)
      * @param  string|null $authorization authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodesV1ReferencesBankCodesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodes'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \MagpiePay\Model\BankCodeCollection|\MagpiePay\Model\HTTPValidationError
      */
-    public function listBankCodesV1ReferencesBankCodesGet($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodesV1ReferencesBankCodesGet'][0])
+    public function listBankCodes($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodes'][0])
     {
-        list($response) = $this->listBankCodesV1ReferencesBankCodesGetWithHttpInfo($x_api_key, $authorization, $contentType);
+        list($response) = $this->listBankCodesWithHttpInfo($x_api_key, $authorization, $contentType);
         return $response;
     }
 
     /**
-     * Operation listBankCodesV1ReferencesBankCodesGetWithHttpInfo
+     * Operation listBankCodesWithHttpInfo
      *
      * List Bank Codes
      *
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodesV1ReferencesBankCodesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodes'] to see the possible values for this operation
      *
      * @throws \MagpiePay\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \MagpiePay\Model\BankCodeCollection|\MagpiePay\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBankCodesV1ReferencesBankCodesGetWithHttpInfo($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodesV1ReferencesBankCodesGet'][0])
+    public function listBankCodesWithHttpInfo($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodes'][0])
     {
-        $request = $this->listBankCodesV1ReferencesBankCodesGetRequest($x_api_key, $authorization, $contentType);
+        $request = $this->listBankCodesRequest($x_api_key, $authorization, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -245,20 +245,20 @@ class ReferencesApi
     }
 
     /**
-     * Operation listBankCodesV1ReferencesBankCodesGetAsync
+     * Operation listBankCodesAsync
      *
      * List Bank Codes
      *
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodesV1ReferencesBankCodesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBankCodesV1ReferencesBankCodesGetAsync($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodesV1ReferencesBankCodesGet'][0])
+    public function listBankCodesAsync($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodes'][0])
     {
-        return $this->listBankCodesV1ReferencesBankCodesGetAsyncWithHttpInfo($x_api_key, $authorization, $contentType)
+        return $this->listBankCodesAsyncWithHttpInfo($x_api_key, $authorization, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -267,21 +267,21 @@ class ReferencesApi
     }
 
     /**
-     * Operation listBankCodesV1ReferencesBankCodesGetAsyncWithHttpInfo
+     * Operation listBankCodesAsyncWithHttpInfo
      *
      * List Bank Codes
      *
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodesV1ReferencesBankCodesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBankCodesV1ReferencesBankCodesGetAsyncWithHttpInfo($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodesV1ReferencesBankCodesGet'][0])
+    public function listBankCodesAsyncWithHttpInfo($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodes'][0])
     {
         $returnType = '\MagpiePay\Model\BankCodeCollection';
-        $request = $this->listBankCodesV1ReferencesBankCodesGetRequest($x_api_key, $authorization, $contentType);
+        $request = $this->listBankCodesRequest($x_api_key, $authorization, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -320,16 +320,16 @@ class ReferencesApi
     }
 
     /**
-     * Create request for operation 'listBankCodesV1ReferencesBankCodesGet'
+     * Create request for operation 'listBankCodes'
      *
      * @param  string|null $x_api_key (optional)
      * @param  string|null $authorization (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodesV1ReferencesBankCodesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBankCodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBankCodesV1ReferencesBankCodesGetRequest($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodesV1ReferencesBankCodesGet'][0])
+    public function listBankCodesRequest($x_api_key = null, $authorization = null, string $contentType = self::contentTypes['listBankCodes'][0])
     {
 
 

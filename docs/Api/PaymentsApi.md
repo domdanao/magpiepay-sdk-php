@@ -6,14 +6,14 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getPaymentV1PaymentsPaymentIdGet()**](PaymentsApi.md#getPaymentV1PaymentsPaymentIdGet) | **GET** /v1/payments/{payment_id} | Get payment |
-| [**listPaymentsV1PaymentsGet()**](PaymentsApi.md#listPaymentsV1PaymentsGet) | **GET** /v1/payments/ | List payments |
+| [**getPayment()**](PaymentsApi.md#getPayment) | **GET** /v1/payments/{payment_id} | Get payment |
+| [**listPayments()**](PaymentsApi.md#listPayments) | **GET** /v1/payments/ | List payments |
 
 
-## `getPaymentV1PaymentsPaymentIdGet()`
+## `getPayment()`
 
 ```php
-getPaymentV1PaymentsPaymentIdGet($payment_id, $x_api_key, $authorization): \MagpiePay\Model\PaymentSingleResponse
+getPayment($payment_id, $x_api_key, $authorization): \MagpiePay\Model\PaymentSingleResponse
 ```
 
 Get payment
@@ -44,10 +44,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->getPaymentV1PaymentsPaymentIdGet($payment_id, $x_api_key, $authorization);
+    $result = $apiInstance->getPayment($payment_id, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PaymentsApi->getPaymentV1PaymentsPaymentIdGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PaymentsApi->getPayment: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -76,10 +76,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listPaymentsV1PaymentsGet()`
+## `listPayments()`
 
 ```php
-listPaymentsV1PaymentsGet($limit, $cursor, $x_api_key, $authorization): \MagpiePay\Model\PaymentCollectionResponse
+listPayments($limit, $cursor, $x_api_key, $authorization): \MagpiePay\Model\PaymentCollectionResponse
 ```
 
 List payments
@@ -111,10 +111,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->listPaymentsV1PaymentsGet($limit, $cursor, $x_api_key, $authorization);
+    $result = $apiInstance->listPayments($limit, $cursor, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PaymentsApi->listPaymentsV1PaymentsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PaymentsApi->listPayments: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

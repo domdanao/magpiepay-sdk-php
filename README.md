@@ -1,176 +1,109 @@
-# MagpiePay PHP SDK
+# domdanao/magpiepay-sdk-php
 
-The official PHP client for the MagpiePay API.
+Magpie API for QRPh and Disbursement services
 
-## Installation
 
-Install the package via Composer:
+## Installation & Usage
 
-```bash
-composer require domdanao/magpiepay-sdk-php
+### Requirements
+
+PHP 8.1 and later.
+
+### Composer
+
+To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    }
+  ],
+  "require": {
+    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+  }
+}
 ```
 
-## Laravel Integration
+Then run `composer install`
 
-The SDK is fully compatible with Laravel and includes a Service Provider for **automatic integration**.
+### Manual Installation
 
-### 1. Configure Credentials
+Download the files and include `autoload.php`:
 
-Simply add your API key to your `.env` file:
-
-```dotenv
-MAGPIE_API_KEY=sk_live_...
 ```
 
-That's it! The SDK will automatically register the `Configuration` and API classes (like `PaymentsApi`, `PayoutsApi`) as singletons in the service container.
+### Laravel Integration
 
-### 2. Usage in Controllers
+This package includes a Laravel Service Provider for easy integration.
 
-You can now type-hint the API classes in your controllers, and Laravel will automatically inject the configured instance.
+#### Configuration
 
-Now you can type-hint the API classes in your controllers, and Laravel will automatically inject the configured instance.
+1.  Add your MagpiePay API key to your `.env` file:
+
+    ```env
+    MAGPIE_API_KEY=your_api_key_here
+    ```
+
+2.  (Optional) Publish the configuration file:
+
+    ```bash
+    php artisan vendor:publish --provider="MagpiePay\Laravel\MagpiePayServiceProvider"
+    ```
+
+#### Usage
+
+You can inject the API clients directly into your controllers or services. The Service Provider will automatically configure them with your API key.
 
 ```php
-namespace App\Http\Controllers;
-
 use MagpiePay\Api\PaymentsApi;
 
-class PaymentController extends Controller
+public function index(PaymentsApi $api)
 {
-    public function index(PaymentsApi $api)
-    {
-        try {
-            $payments = $api->listPaymentsV1PaymentsGet();
-            return response()->json($payments->getData());
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+    try {
+        $payments = $api->listPayments();
+        return response()->json($payments);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
 }
 ```
 
 ## Getting Started
 
-### Authentication
-
-Initialize the client with your API key. The API uses Basic Authentication, where the username is your API key and the password is left empty.
+Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use MagpiePay\Configuration;
-use MagpiePay\Api\PaymentsApi;
-use GuzzleHttp\Client;
 
-$config = Configuration::getDefaultConfiguration()
-    ->setUsername('YOUR_API_KEY')
-    ->setPassword(''); // Password is empty for MagpiePay API Key auth
 
-$paymentsApi = new PaymentsApi(
-    new Client(),
+// Configure HTTP basic authorization: basicAuth
+$config = MagpiePay\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MagpiePay\Api\PaymentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
     $config
 );
-```
-
-### Quick Start: List Bank Codes
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-use MagpiePay\Configuration;
-use MagpiePay\Api\ReferencesApi;
-use GuzzleHttp\Client;
-
-$config = Configuration::getDefaultConfiguration()
-    ->setUsername('YOUR_API_KEY')
-    ->setPassword('');
-
-$referencesApi = new ReferencesApi(new Client(), $config);
+$payment_id = 'payment_id_example'; // string
+$x_api_key = 'x_api_key_example'; // string
+$authorization = 'authorization_example'; // string
 
 try {
-    $result = $referencesApi->listBankCodesV1ReferencesBankCodesGet();
+    $result = $apiInstance->getPayment($payment_id, $x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ReferencesApi->listBankCodesV1ReferencesBankCodesGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PaymentsApi->getPayment: ', $e->getMessage(), PHP_EOL;
 }
-```
 
-## Recipes
-
-### Create a Payment (QRPh)
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-use MagpiePay\Configuration;
-use MagpiePay\Api\QRPhRequestsApi;
-use MagpiePay\Model\CanonicalCreateQRReq;
-use GuzzleHttp\Client;
-
-$config = Configuration::getDefaultConfiguration()
-    ->setUsername('YOUR_API_KEY')
-    ->setPassword('');
-
-$qrphApi = new QRPhRequestsApi(new Client(), $config);
-
-$request = new CanonicalCreateQRReq([
-    'reference_id' => 'my-ref-123',
-    'amount' => 10000, // 100.00 PHP
-    'type' => 'dynamic',
-    'metadata' => ['customer_name' => 'John Doe']
-]);
-
-try {
-    $response = $qrphApi->createQrphV1QrphPost($request);
-    echo "Payment Created: " . $response->getData()->getId() . PHP_EOL;
-    echo "Checkout URL: " . $response->getData()->getCheckoutUrl() . PHP_EOL;
-} catch (Exception $e) {
-    echo 'Error creating payment: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Create a Payout
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-use MagpiePay\Configuration;
-use MagpiePay\Api\PayoutsApi;
-use MagpiePay\Model\PayoutCreateRequest;
-use MagpiePay\Model\PayoutDestination;
-use GuzzleHttp\Client;
-
-$config = Configuration::getDefaultConfiguration()
-    ->setUsername('YOUR_API_KEY')
-    ->setPassword('');
-
-$payoutsApi = new PayoutsApi(new Client(), $config);
-
-$destination = new PayoutDestination([
-    'bank_code' => 'BDO',
-    'account_number' => '1234567890',
-    'first_name' => 'Jane',
-    'last_name' => 'Doe'
-]);
-
-$request = new PayoutCreateRequest([
-    'reference_id' => 'payout-ref-456',
-    'amount' => 50000, // 500.00 PHP
-    'channel' => 'instapay',
-    'source_account_id' => 'src_123',
-    'destination' => $destination
-]);
-
-try {
-    $response = $payoutsApi->createPayoutV1PayoutsPost($request);
-    echo "Payout Initiated: " . $response->getData()->getId() . PHP_EOL;
-} catch (Exception $e) {
-    echo 'Error creating payout: ', $e->getMessage(), PHP_EOL;
-}
 ```
 
 ## API Endpoints
@@ -179,16 +112,16 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*PaymentsApi* | [**getPaymentV1PaymentsPaymentIdGet**](docs/Api/PaymentsApi.md#getpaymentv1paymentspaymentidget) | **GET** /v1/payments/{payment_id} | Get payment
-*PaymentsApi* | [**listPaymentsV1PaymentsGet**](docs/Api/PaymentsApi.md#listpaymentsv1paymentsget) | **GET** /v1/payments/ | List payments
-*PayoutsApi* | [**createPayoutV1PayoutsPost**](docs/Api/PayoutsApi.md#createpayoutv1payoutspost) | **POST** /v1/payouts/ | Create a payout
-*PayoutsApi* | [**getPayoutV1PayoutsPayoutIdGet**](docs/Api/PayoutsApi.md#getpayoutv1payoutspayoutidget) | **GET** /v1/payouts/{payout_id} | Get payout
-*PayoutsApi* | [**listPayoutsV1PayoutsGet**](docs/Api/PayoutsApi.md#listpayoutsv1payoutsget) | **GET** /v1/payouts/ | List payouts
-*QRPhRequestsApi* | [**cancelQrphV1QrphIdCancelPost**](docs/Api/QRPhRequestsApi.md#cancelqrphv1qrphidcancelpost) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request
-*QRPhRequestsApi* | [**createQrphV1QrphPost**](docs/Api/QRPhRequestsApi.md#createqrphv1qrphpost) | **POST** /v1/qrph/ | Create a QRPh request
-*QRPhRequestsApi* | [**getQrphStatusV1QrphIdGet**](docs/Api/QRPhRequestsApi.md#getqrphstatusv1qrphidget) | **GET** /v1/qrph/{id} | Get QRPh status
-*QRPhRequestsApi* | [**listQrphV1QrphGet**](docs/Api/QRPhRequestsApi.md#listqrphv1qrphget) | **GET** /v1/qrph/ | List QRPh requests
-*ReferencesApi* | [**listBankCodesV1ReferencesBankCodesGet**](docs/Api/ReferencesApi.md#listbankcodesv1referencesbankcodesget) | **GET** /v1/references/bank_codes | List Bank Codes
+*PaymentsApi* | [**getPayment**](docs/Api/PaymentsApi.md#getpayment) | **GET** /v1/payments/{payment_id} | Get payment
+*PaymentsApi* | [**listPayments**](docs/Api/PaymentsApi.md#listpayments) | **GET** /v1/payments/ | List payments
+*PayoutsApi* | [**createPayout**](docs/Api/PayoutsApi.md#createpayout) | **POST** /v1/payouts/ | Create a payout
+*PayoutsApi* | [**getPayout**](docs/Api/PayoutsApi.md#getpayout) | **GET** /v1/payouts/{payout_id} | Get payout
+*PayoutsApi* | [**listPayouts**](docs/Api/PayoutsApi.md#listpayouts) | **GET** /v1/payouts/ | List payouts
+*QRPhRequestsApi* | [**cancelQrph**](docs/Api/QRPhRequestsApi.md#cancelqrph) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request
+*QRPhRequestsApi* | [**createQrph**](docs/Api/QRPhRequestsApi.md#createqrph) | **POST** /v1/qrph/ | Create a QRPh request
+*QRPhRequestsApi* | [**getQrph**](docs/Api/QRPhRequestsApi.md#getqrph) | **GET** /v1/qrph/{id} | Get QRPh status
+*QRPhRequestsApi* | [**listQrph**](docs/Api/QRPhRequestsApi.md#listqrph) | **GET** /v1/qrph/ | List QRPh requests
+*ReferencesApi* | [**listBankCodes**](docs/Api/ReferencesApi.md#listbankcodes) | **GET** /v1/references/bank_codes | List Bank Codes
 
 ## Models
 
@@ -212,3 +145,31 @@ Class | Method | HTTP request | Description
 - [QRPhSingleResponse](docs/Model/QRPhSingleResponse.md)
 - [ValidationError](docs/Model/ValidationError.md)
 - [ValidationErrorLocInner](docs/Model/ValidationErrorLocInner.md)
+
+## Authorization
+
+Authentication schemes defined for the API:
+### basicAuth
+
+- **Type**: HTTP basic authentication
+
+## Tests
+
+To run the tests, use:
+
+```bash
+composer install
+vendor/bin/phpunit
+```
+
+## Author
+
+
+
+## About this package
+
+This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+
+- API version: `1.0.0`
+    - Generator version: `7.17.0`
+- Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

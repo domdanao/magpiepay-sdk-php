@@ -6,13 +6,13 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**listBankCodesV1ReferencesBankCodesGet()**](ReferencesApi.md#listBankCodesV1ReferencesBankCodesGet) | **GET** /v1/references/bank_codes | List Bank Codes |
+| [**listBankCodes()**](ReferencesApi.md#listBankCodes) | **GET** /v1/references/bank_codes | List Bank Codes |
 
 
-## `listBankCodesV1ReferencesBankCodesGet()`
+## `listBankCodes()`
 
 ```php
-listBankCodesV1ReferencesBankCodesGet($x_api_key, $authorization): \MagpiePay\Model\BankCodeCollection
+listBankCodes($x_api_key, $authorization): \MagpiePay\Model\BankCodeCollection
 ```
 
 List Bank Codes
@@ -40,10 +40,10 @@ $x_api_key = 'x_api_key_example'; // string
 $authorization = 'authorization_example'; // string
 
 try {
-    $result = $apiInstance->listBankCodesV1ReferencesBankCodesGet($x_api_key, $authorization);
+    $result = $apiInstance->listBankCodes($x_api_key, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ReferencesApi->listBankCodesV1ReferencesBankCodesGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ReferencesApi->listBankCodes: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
