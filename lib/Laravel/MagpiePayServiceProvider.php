@@ -32,12 +32,6 @@ class MagpiePayServiceProvider extends ServiceProvider
                 $config->setPassword(''); // Empty password for Basic Auth with API Key
             }
 
-            // Allow base URL override for staging/development
-            $baseUrl = config('services.magpiepay.base_url', env('MAGPIEPAY_BASE_URL'));
-            if ($baseUrl) {
-                $config->setHost($baseUrl);
-            }
-
             return $config;
         });
 

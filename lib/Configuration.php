@@ -291,19 +291,6 @@ class Configuration
     }
 
     /**
-     * Sets the host
-     *
-     * @param string $host Host
-     *
-     * @return $this
-     */
-    public function setHost($host)
-    {
-        $this->host = $host;
-        return $this;
-    }
-
-    /**
      * Gets the host
      *
      * @return string Host
