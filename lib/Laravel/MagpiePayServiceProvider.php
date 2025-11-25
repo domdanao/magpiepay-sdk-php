@@ -19,13 +19,13 @@ class MagpiePayServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Merge default config if we had one, but for now we rely on services.magpie or env
+        // Merge default config if we had one, but for now we rely on services.magpiepay or env
 
         $this->app->singleton(Configuration::class, function ($app) {
             $config = Configuration::getDefaultConfiguration();
 
             // Try config first, then env
-            $apiKey = config('services.magpie.key', env('MAGPIE_API_KEY'));
+            $apiKey = config('services.magpiepay.key', env('MAGPIEPAY_API_KEY'));
 
             if ($apiKey) {
                 $config->setUsername($apiKey);

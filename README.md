@@ -32,7 +32,7 @@ This package includes a Laravel Service Provider for easy integration.
 1.  Add your MagpiePay API key to your `.env` file:
 
     ```env
-    MAGPIE_API_KEY=your_api_key_here
+    MAGPIEPAY_API_KEY=your_api_key_here
     ```
 
 2.  (Optional) Publish the configuration file:
