@@ -33,6 +33,9 @@ This package includes a Laravel Service Provider for easy integration.
 
     ```env
     MAGPIEPAY_API_KEY=your_api_key_here
+    
+    # Optional: Override base URL for local development (defaults to https://api.magpiepay.com)
+    # MAGPIEPAY_BASE_URL=http://localhost:8000
     ```
 
 2.  (Optional) Publish the configuration file:
@@ -74,6 +77,10 @@ $config = MagpiePay\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
+// The SDK now defaults to https://api.magpiepay.com
+// You can override it for local development if needed:
+// $config->setHost('http://localhost:8000');
+
 
 $apiInstance = new MagpiePay\Api\PaymentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -96,7 +103,7 @@ try {
 
 ## API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

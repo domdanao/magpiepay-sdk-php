@@ -93,7 +93,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'http://localhost';
+    protected $host = 'https://api.magpiepay.com';
 
     /**
      * User agent of the HTTP request, set to "OpenAPI-Generator/{version}/PHP" by default
@@ -415,11 +415,11 @@ class Configuration
      *
      * @return $this
      */
-     public function setCertFile($certFile)
-     {
+    public function setCertFile($certFile)
+    {
         $this->certFile = $certFile;
         return $this;
-     }
+    }
 
     /**
      * Gets the certificate file path, for mTLS
@@ -436,11 +436,11 @@ class Configuration
      *
      * @return $this
      */
-     public function setKeyFile($keyFile)
-     {
+    public function setKeyFile($keyFile)
+    {
         $this->keyFile = $keyFile;
         return $this;
-     }
+    }
 
     /**
      * Gets the certificate key path, for mTLS
@@ -451,7 +451,7 @@ class Configuration
     {
         return $this->keyFile;
     }
-    
+
 
     /**
      * Gets the default configuration instance
@@ -486,7 +486,7 @@ class Configuration
      */
     public static function toDebugReport()
     {
-        $report  = 'PHP SDK (MagpiePay) Debug Report:' . PHP_EOL;
+        $report = 'PHP SDK (MagpiePay) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: 1.0.0' . PHP_EOL;
@@ -529,20 +529,20 @@ class Configuration
     {
         return [
             [
-                "url" => "",
-                "description" => "No description provided",
+                "url" => "https://api.magpiepay.com",
+                "description" => "Production Server",
             ]
         ];
     }
 
     /**
-    * Returns URL based on host settings, index and variables
-    *
-    * @param array      $hostSettings array of host settings, generated from getHostSettings() or equivalent from the API clients
-    * @param int        $hostIndex    index of the host settings
-    * @param array|null $variables    hash of variable and the corresponding value (optional)
-    * @return string URL based on host settings
-    */
+     * Returns URL based on host settings, index and variables
+     *
+     * @param array      $hostSettings array of host settings, generated from getHostSettings() or equivalent from the API clients
+     * @param int        $hostIndex    index of the host settings
+     * @param array|null $variables    hash of variable and the corresponding value (optional)
+     * @return string URL based on host settings
+     */
     public static function getHostString(array $hostSettings, $hostIndex, ?array $variables = null)
     {
         if (null === $variables) {
@@ -551,7 +551,7 @@ class Configuration
 
         // check array index out of bound
         if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new \InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than ".count($hostSettings));
+            throw new \InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than " . count($hostSettings));
         }
 
         $host = $hostSettings[$hostIndex];
@@ -561,13 +561,13 @@ class Configuration
         foreach ($host["variables"] ?? [] as $name => $variable) {
             if (array_key_exists($name, $variables)) { // check to see if it's in the variables provided by the user
                 if (!isset($variable['enum_values']) || in_array($variables[$name], $variable["enum_values"], true)) { // check to see if the value is in the enum
-                    $url = str_replace("{".$name."}", $variables[$name], $url);
+                    $url = str_replace("{" . $name . "}", $variables[$name], $url);
                 } else {
-                    throw new \InvalidArgumentException("The variable `$name` in the host URL has invalid value ".$variables[$name].". Must be ".join(',', $variable["enum_values"]).".");
+                    throw new \InvalidArgumentException("The variable `$name` in the host URL has invalid value " . $variables[$name] . ". Must be " . join(',', $variable["enum_values"]) . ".");
                 }
             } else {
                 // use default value
-                $url = str_replace("{".$name."}", $variable["default_value"], $url);
+                $url = str_replace("{" . $name . "}", $variable["default_value"], $url);
             }
         }
 
