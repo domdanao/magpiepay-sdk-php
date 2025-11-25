@@ -2,7 +2,7 @@
 
 
 
-All URIs are relative to http://localhost, except if the operation defines another base path.
+All URIs are relative to https://api.magpiepay.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |

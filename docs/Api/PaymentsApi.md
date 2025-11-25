@@ -2,7 +2,7 @@
 
 Payments are processed when the customer scans the QR code and approves the payment using their financial app. The payment is routed through the customer’s bank or e-wallet and validated through the national QRPh network. Once the transaction is completed, the merchant receives a real-time callback notification containing the payment amount, payment channel, timestamps, and confirmation message.
 
-All URIs are relative to http://localhost, except if the operation defines another base path.
+All URIs are relative to https://api.magpiepay.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |

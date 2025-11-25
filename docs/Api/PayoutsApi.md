@@ -2,7 +2,7 @@
 
 The payout service allows partners to send funds from their disbursement account to any participating bank or e-wallet in the Philippines. Two clearing networks are supported—InstaPay and PESONet—giving partners flexibility depending on speed and transaction value.&lt;br/&gt;&lt;br/&gt;InstaPay enables real-time, low-value transfers of up to ₱50,000 per transaction. Funds are processed instantly and typically reach the recipient within seconds. This is ideal for time-sensitive disbursements such as customer refunds, driver or rider payouts, incentives, or wallet top-ups.,&lt;br/&gt;&lt;br/&gt;PESONet supports larger-value or batch transfers processed according to the network’s scheduled clearing cycle. It is suited for bulk payouts, salary runs, vendor payments, and other high-value transfers where same-day or next-day posting is acceptable.
 
-All URIs are relative to http://localhost, except if the operation defines another base path.
+All URIs are relative to https://api.magpiepay.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
